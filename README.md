@@ -29,6 +29,3 @@ The goal of this project is to assist potential buyers, sellers, and real estate
 - Improve model accuracy with advanced techniques like ensemble learning.
 - Add a user-friendly front-end interface.
 
----
-
-Feel free to modify the description to fit any specific details unique to your project!
