@@ -1,10 +1,23 @@
+
+# server.py
 from flask import Flask, request, jsonify
 import util
 from flask_cors import CORS
 import os
 
 app = Flask(__name__)
-CORS(app)  # Enable CORS for all routes
+CORS(app)
+
+@app.route('/', methods=['GET'])
+def home():
+    return jsonify({
+        'status': 'success',
+        'message': 'Home Price Prediction API is running',
+        'available_endpoints': {
+            'GET /get_location_names': 'Get list of available locations',
+            'POST /predict_home_price': 'Predict home price based on inputs'
+        }
+    })
 
 @app.route('/get_location_names', methods=['GET'])
 def get_location_names():
@@ -30,8 +43,5 @@ def predict_home_price():
     except Exception as e:
         return jsonify({'error': str(e)}), 400
 
-if __name__ == "__main__":
-    print("Starting Python Flask Server For Home Price Prediction...")
-    port = int(os.environ.get('PORT', 10000))
-    util.load_saved_artifacts()
-    app.run(host='0.0.0.0', port=port)
+# Load artifacts at startup
+util.load_saved_artifacts()
